@@ -1,7 +1,7 @@
 import { lazy } from "react"
 import { RouteObject, Navigate } from "react-router-dom"
 
-// 路由懒加载
+// lazy 路由懒加载
 const Discover = lazy(() => import("@/views/discover"))
 const Mine = lazy(() => import("@/views/mine"))
 const Focus = lazy(() => import("@/views/focus"))
