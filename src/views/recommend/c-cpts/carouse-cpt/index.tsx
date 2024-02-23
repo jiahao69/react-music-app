@@ -12,7 +12,7 @@ interface IProps {
   children?: ReactNode
 }
 
-const CarouselList: FC<IProps> = () => {
+const CarouselCpt: FC<IProps> = () => {
   const carouselRef = useRef<CarouselRef>(null)
   const [banners, setBanners] = useState<any[]>([])
   const [blurbg, setBlurbg] = useState("")
@@ -31,21 +31,18 @@ const CarouselList: FC<IProps> = () => {
   }
 
   const handleBeforeChange = (current: number, next: number) => {
-    setBlurbg(`${banners[next].imageUrl}?imageView&blur=40x20`)
+    const imageUrl = banners[next].imageUrl
+    setBlurbg(`${imageUrl}?imageView&blur=40x20`)
   }
 
   useEffect(() => {
     _getBannerList()
   }, [])
   return (
-    <CarouseWrapper
-      style={{
-        backgroundImage: `url(${blurbg})`
-      }}
-    >
+    <CarouseWrapper $blurbg={blurbg}>
       <LeftOutlined
         className="change-arrow"
-        style={{ marginRight: 40 }}
+        style={{ marginRight: 42 }}
         onClick={() => handleChangeCarouse("prev")}
       />
       <Carousel
@@ -61,11 +58,11 @@ const CarouselList: FC<IProps> = () => {
       </Carousel>
       <RightOutlined
         className="change-arrow"
-        style={{ marginLeft: 40 }}
+        style={{ marginLeft: 42 }}
         onClick={() => handleChangeCarouse("next")}
       />
     </CarouseWrapper>
   )
 }
 
-export default memo(CarouselList)
+export default memo(CarouselCpt)
