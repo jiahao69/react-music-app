@@ -1,1 +1,0 @@
-import hyRequest from "../index"

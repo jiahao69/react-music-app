@@ -2,58 +2,34 @@ import { lazy } from "react"
 import { RouteObject, Navigate } from "react-router-dom"
 
 // lazy 路由懒加载
-const Discover = lazy(() => import("@/views/discover"))
-const Mine = lazy(() => import("@/views/mine"))
-const Focus = lazy(() => import("@/views/focus"))
-const Download = lazy(() => import("@/views/download"))
-
-// 二级路由
-const Recommend = lazy(() => import("@/views/discover/c-views/recommend"))
-const Ranking = lazy(() => import("@/views/discover/c-views/ranking"))
-const Songs = lazy(() => import("@/views/discover/c-views/songs"))
-const Djradio = lazy(() => import("@/views/discover/c-views/djradio"))
-const Artist = lazy(() => import("@/views/discover/c-views/artist"))
-const Album = lazy(() => import("@/views/discover/c-views/album"))
+const Recommend = lazy(() => import("@/views/recommend"))
+const Ranking = lazy(() => import("@/views/ranking"))
+const Playlist = lazy(() => import("@/views/playlist"))
+const Artist = lazy(() => import("@/views/artist"))
+const Dj = lazy(() => import("@/views/dj"))
 
 const routes: RouteObject[] = [
-  { path: "/", element: <Navigate to="/discover" /> },
+  { path: "/", element: <Navigate to="/recommned" /> },
   {
-    path: "/discover",
-    element: <Discover />,
-    children: [
-      {
-        path: "/discover",
-        element: <Navigate to="/discover/recommend" />
-      },
-      {
-        path: "/discover/recommend",
-        element: <Recommend />
-      },
-      {
-        path: "/discover/ranking",
-        element: <Ranking />
-      },
-      {
-        path: "/discover/songs",
-        element: <Songs />
-      },
-      {
-        path: "/discover/djradio",
-        element: <Djradio />
-      },
-      {
-        path: "/discover/artist",
-        element: <Artist />
-      },
-      {
-        path: "/discover/album",
-        element: <Album />
-      }
-    ]
+    path: "/recommend",
+    element: <Recommend />
   },
-  { path: "/mine", element: <Mine /> },
-  { path: "/focus", element: <Focus /> },
-  { path: "/download", element: <Download /> }
+  {
+    path: "/ranking",
+    element: <Ranking />
+  },
+  {
+    path: "/songs",
+    element: <Playlist />
+  },
+  {
+    path: "/artist",
+    element: <Artist />
+  },
+  {
+    path: "/dj",
+    element: <Dj />
+  }
 ]
 
 export default routes

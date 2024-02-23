@@ -5,8 +5,8 @@ interface IProps {
   children?: ReactNode
 }
 
-const NavBar: FC<IProps> = () => {
-  return <div>NavBar</div>
+const Dj: FC<IProps> = () => {
+  return <div>Dj</div>
 }
 
-export default memo(NavBar)
+export default memo(Dj)
