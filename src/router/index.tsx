@@ -9,7 +9,7 @@ const Artist = lazy(() => import("@/views/artist"))
 const Dj = lazy(() => import("@/views/dj"))
 
 const routes: RouteObject[] = [
-  { path: "/", element: <Navigate to="/recommned" /> },
+  { path: "/", element: <Navigate to="/recommend" /> },
   {
     path: "/recommend",
     element: <Recommend />
