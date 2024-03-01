@@ -48,6 +48,7 @@ const CarouselCpt: FC<IProps> = () => {
       <Carousel
         className="carousel-content"
         ref={carouselRef}
+        autoplay
         beforeChange={handleBeforeChange}
       >
         {banners.map((item, index) => (

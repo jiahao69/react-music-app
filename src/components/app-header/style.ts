@@ -78,5 +78,8 @@ export const HeaderRight = styled.div`
     font-size: 12px;
     color: #787878;
     cursor: pointer;
+    &:hover {
+      color: #999;
+    }
   }
 `
