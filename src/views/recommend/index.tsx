@@ -13,6 +13,7 @@ import CarouselCpt from "./c-cpts/carouse-cpt"
 import RecommendPart from "./c-cpts/recommend-part"
 import PlaylistItem from "@/components/playlist-item"
 import AlbumItem from "@/components/album-item"
+import RankItem from "@/components/rank-item"
 
 import {
   RecommendPlaylistWrapper,
@@ -49,7 +50,10 @@ const Recommend: FC<IProps> = () => {
       getPlaylistSongId(id)
     )
     Promise.all(rankingPromiseList).then((res: any) => {
-      const list = res.map((item: any) => item.playlist)
+      const list = res.map((item: any) => ({
+        ...item.playlist,
+        tracks: item.playlist.tracks.slice(0, 10)
+      }))
       console.log("getRankingLlist", list)
 
       setRankingList(list)
@@ -70,6 +74,7 @@ const Recommend: FC<IProps> = () => {
       {/* 轮播图 */}
       <CarouselCpt />
 
+      {/* 热门推荐 */}
       <div className="content-bg">
         <RecommendPart title="热门推荐" moreFn={handleMoreClick}>
           <RecommendPlaylistWrapper>
@@ -79,6 +84,7 @@ const Recommend: FC<IProps> = () => {
           </RecommendPlaylistWrapper>
         </RecommendPart>
 
+        {/* 新碟上架 */}
         <RecommendPart title="新碟上架" moreFn={handleMoreClick}>
           <RecommendAlbumWrapper>
             <div className="album-list">
@@ -89,21 +95,11 @@ const Recommend: FC<IProps> = () => {
           </RecommendAlbumWrapper>
         </RecommendPart>
 
+        {/* 榜单 */}
         <RecommendPart title="榜单" moreFn={handleMoreClick}>
           <RecommendRankingWrapper>
             {rankingList.map((item) => (
-              <div className="ranking-column">
-                <div className="ranking-top">
-                  <div className="ranking-cover">
-                    <img src={item.coverImgUrl} alt="" />
-                  </div>
-
-                  <div className="right-layout">
-                    <div className="ranking-name">{item.name}</div>
-                    <div>12323</div>
-                  </div>
-                </div>
-              </div>
+              <RankItem item={item} key={item.id} />
             ))}
           </RecommendRankingWrapper>
         </RecommendPart>

@@ -71,6 +71,10 @@ export const HeaderRight = styled.div`
       font-size: 12px;
       color: #9b9b9b;
     }
+
+    .ant-input-outlined:hover {
+      border-color: yellow;
+    }
   }
 
   .login-btn {

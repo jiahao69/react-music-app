@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Ranking: FC<IProps> = () => {
-  return <div>Ranking</div>
+  return <div></div>
 }
 
 export default memo(Ranking)

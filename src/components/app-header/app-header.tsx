@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 import { HeaderLeft, HeaderRight, HeaderWrapper } from "./style"
 import headerTitles from "@/assets/data/header_titles.json"
 
-import { Input } from "antd"
+import { Input, ConfigProvider } from "antd"
 import { SearchOutlined } from "@ant-design/icons"
 
 interface IProps {
@@ -35,11 +35,22 @@ const AppHeader: FC<IProps> = () => {
           </div>
         </HeaderLeft>
         <HeaderRight>
-          <Input
-            className="my-input"
-            placeholder="音乐/视频/电台/用户"
-            prefix={<SearchOutlined />}
-          />
+          <ConfigProvider
+            theme={{
+              components: {
+                Input: {
+                  hoverBorderColor: "#fff",
+                  activeBorderColor: "#fff"
+                }
+              }
+            }}
+          >
+            <Input
+              className="my-input"
+              placeholder="音乐/视频/电台/用户"
+              prefix={<SearchOutlined />}
+            />
+          </ConfigProvider>
 
           <div className="login-btn">登录</div>
         </HeaderRight>
