@@ -29,6 +29,7 @@ export const PlaylistItemWrapper = styled.div<{ $bg: string }>`
           box-sizing: border-box;
           background-position: 0 -537px;
           color: #ccc;
+          cursor: auto;
 
           .listen-count {
             display: flex;
@@ -45,6 +46,11 @@ export const PlaylistItemWrapper = styled.div<{ $bg: string }>`
             width: 16px;
             height: 17px;
             background-position: 0 0;
+            cursor: pointer;
+
+            &:hover {
+              background-position: 0 -60px;
+            }
           }
         }
       }

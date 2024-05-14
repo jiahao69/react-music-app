@@ -24,7 +24,7 @@ const RecommendPart: FC<IProps> = ({ children, title, moreFn }) => {
           <div className="part-right-icon sprite_02"></div>
         </div>
       </div>
-      <div className="part-content">{children}</div>
+      {children}
     </RecommendPartWrapper>
   )
 }

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const AlbumItemWrapper = styled.div<{ $picbg: string }>`
   display: flex;
   width: 118px;
-  height: 150px;
+  /* height: 150px; */
   background-position: -260px 100px;
   .album-item {
     width: 100px;
@@ -33,6 +33,7 @@ export const AlbumItemWrapper = styled.div<{ $picbg: string }>`
 
     .album-msg {
       width: 100%;
+      font-size: 12px;
       .album-title,
       .album-artist {
         overflow: hidden;

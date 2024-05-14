@@ -8,17 +8,16 @@ export const RecommendPlaylistWrapper = styled.div`
 `
 
 export const RecommendAlbumWrapper = styled.div`
-  display: flex;
-  align-items: center;
   height: 184px;
   background-color: #f5f5f5;
   border: 1px solid #d3d3d3;
-  padding: 0 26px;
+  padding: 0 28px;
   box-sizing: border-box;
-  overflow: scroll;
-  .album-list {
+
+  .album-gruop {
     display: flex;
-    gap: 40px;
+    gap: 44px;
+    margin-top: 20.5px;
   }
 `
 export const RecommendRankingWrapper = styled.div`

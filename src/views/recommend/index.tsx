@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from "react"
 import type { FC, ReactNode } from "react"
+import { Carousel } from "antd"
 
 import {
   getRecommendPlaylist,
@@ -39,7 +40,13 @@ const Recommend: FC<IProps> = () => {
   const _getRecommendAlbumList = async () => {
     const { albums } = await getRecommendAlbumList()
     console.log("getRecommendAlbumList", albums)
-    setAlbumList(albums)
+
+    const group1 = albums.slice(0, 6)
+    const group2 = albums.slice(6, 12)
+
+    const newAlbums = [group1, group2]
+
+    setAlbumList(newAlbums)
   }
 
   const _getRankingList = async () => {
@@ -87,11 +94,17 @@ const Recommend: FC<IProps> = () => {
         {/* 新碟上架 */}
         <RecommendPart title="新碟上架" moreFn={handleMoreClick}>
           <RecommendAlbumWrapper>
-            <div className="album-list">
-              {albumList.map((item) => (
-                <AlbumItem item={item} key={item.id} />
+            <Carousel dots={false} autoplay speed={800}>
+              {albumList.map((v1, index) => (
+                <div>
+                  <div className="album-gruop" key={index}>
+                    {v1.map((v2: any) => (
+                      <AlbumItem item={v2} key={v2.id} />
+                    ))}
+                  </div>
+                </div>
               ))}
-            </div>
+            </Carousel>
           </RecommendAlbumWrapper>
         </RecommendPart>
 
