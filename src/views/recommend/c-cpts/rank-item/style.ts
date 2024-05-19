@@ -28,6 +28,17 @@ export const RankItemWrapper = styled.div`
         font-size: 14px;
         cursor: pointer;
       }
+
+      .play-icon {
+        width: 22px;
+        height: 22px;
+        background-position: -267px -205px;
+        cursor: pointer;
+
+        &:hover {
+          background-position: -267px -235px;
+        }
+      }
     }
 
     .song-item {
@@ -50,10 +61,6 @@ export const RankItemWrapper = styled.div`
         align-items: center;
         height: 100%;
         cursor: pointer;
-
-        &:hover {
-          color: red;
-        }
       }
     }
     .more {

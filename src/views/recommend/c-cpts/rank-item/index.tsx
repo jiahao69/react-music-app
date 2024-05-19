@@ -19,6 +19,7 @@ const RankItem: FC<IProps> = ({ item }) => {
 
           <div className="right-layout">
             <h3 className="ranking-name">{item.name}</h3>
+            <div className="play-icon sprite_02"></div>
           </div>
         </div>
 

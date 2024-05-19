@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useState } from "react"
+import React, { memo, useEffect, useState, useRef } from "react"
 import type { FC, ReactNode } from "react"
 import { Carousel } from "antd"
+import type { CarouselRef } from "antd/lib/carousel"
 
 import {
   getRecommendPlaylist,
@@ -12,9 +13,9 @@ import {
 // cpts
 import CarouselCpt from "./c-cpts/carouse-cpt"
 import RecommendPart from "./c-cpts/recommend-part"
-import PlaylistItem from "@/components/playlist-item"
-import AlbumItem from "@/components/album-item"
-import RankItem from "@/components/rank-item"
+import PlaylistItem from "./c-cpts/playlist-item"
+import AlbumItem from "./c-cpts/album-item"
+import RankItem from "./c-cpts/rank-item"
 
 import {
   RecommendPlaylistWrapper,
@@ -31,12 +32,16 @@ const Recommend: FC<IProps> = () => {
   const [albumList, setAlbumList] = useState<any[]>([])
   const [rankingList, setRankingList] = useState<any[]>([])
 
+  const carouselRef = useRef<CarouselRef>(null)
+
+  // 推荐歌单数据
   const _getRecommendPlaylist = async () => {
     const { result } = await getRecommendPlaylist()
     console.log("getRecommendPlaylist", result)
     setPlaylist(result.slice(0, 10))
   }
 
+  // 推荐新碟数据
   const _getRecommendAlbumList = async () => {
     const { albums } = await getRecommendAlbumList()
     console.log("getRecommendAlbumList", albums)
@@ -49,6 +54,7 @@ const Recommend: FC<IProps> = () => {
     setAlbumList(newAlbums)
   }
 
+  // 推荐榜单数据
   const _getRankingList = async () => {
     const { list } = await getRankingLlist()
     const rankingIds = list.slice(0, 4).map((item: any) => item.id)
@@ -69,6 +75,10 @@ const Recommend: FC<IProps> = () => {
 
   const handleMoreClick = () => {
     console.log("more")
+  }
+
+  const handleArrowClick = (type: string) => {
+    type === "left" ? carouselRef.current?.prev() : carouselRef.current?.next()
   }
 
   useEffect(() => {
@@ -94,9 +104,18 @@ const Recommend: FC<IProps> = () => {
         {/* 新碟上架 */}
         <RecommendPart title="新碟上架" moreFn={handleMoreClick}>
           <RecommendAlbumWrapper>
-            <Carousel dots={false} autoplay speed={800}>
+            <div
+              className="arrow-wrapper arrow-left sprite_02"
+              onClick={() => handleArrowClick("left")}
+            ></div>
+            <Carousel
+              ref={carouselRef}
+              waitForAnimate
+              dots={false}
+              speed={1000}
+            >
               {albumList.map((v1, index) => (
-                <div>
+                <div key={index}>
                   <div className="album-gruop" key={index}>
                     {v1.map((v2: any) => (
                       <AlbumItem item={v2} key={v2.id} />
@@ -105,6 +124,10 @@ const Recommend: FC<IProps> = () => {
                 </div>
               ))}
             </Carousel>
+            <div
+              className="arrow-wrapper arrow-right sprite_02"
+              onClick={() => handleArrowClick("right")}
+            ></div>
           </RecommendAlbumWrapper>
         </RecommendPart>
 
