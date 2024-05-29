@@ -7,6 +7,7 @@ const Ranking = lazy(() => import("@/views/ranking"))
 const Playlist = lazy(() => import("@/views/playlist"))
 const Artist = lazy(() => import("@/views/artist"))
 const Dj = lazy(() => import("@/views/dj"))
+const PlaylistDetail = lazy(() => import("@/views/playlist-detail"))
 
 const routes: RouteObject[] = [
   { path: "/", element: <Navigate to="/recommend" /> },
@@ -19,7 +20,7 @@ const routes: RouteObject[] = [
     element: <Ranking />
   },
   {
-    path: "/songs",
+    path: "/playlist",
     element: <Playlist />
   },
   {
@@ -29,6 +30,10 @@ const routes: RouteObject[] = [
   {
     path: "/dj",
     element: <Dj />
+  },
+  {
+    path: "/playlist-detail",
+    element: <PlaylistDetail />
   }
 ]
 

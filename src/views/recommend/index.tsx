@@ -1,5 +1,6 @@
-import React, { memo, useEffect, useState, useRef } from "react"
+import { memo, useEffect, useState, useRef } from "react"
 import type { FC, ReactNode } from "react"
+import { useNavigate } from "react-router-dom"
 import { Carousel } from "antd"
 import type { CarouselRef } from "antd/lib/carousel"
 
@@ -33,6 +34,7 @@ const Recommend: FC<IProps> = () => {
   const [rankingList, setRankingList] = useState<any[]>([])
 
   const carouselRef = useRef<CarouselRef>(null)
+  const navigate = useNavigate()
 
   // 推荐歌单数据
   const _getRecommendPlaylist = async () => {
@@ -96,7 +98,13 @@ const Recommend: FC<IProps> = () => {
         <RecommendPart title="热门推荐" moreFn={handleMoreClick}>
           <RecommendPlaylistWrapper>
             {playlist.map((item) => (
-              <PlaylistItem item={item} key={item.id} />
+              <PlaylistItem
+                item={item}
+                key={item.id}
+                clickFn={() => {
+                  navigate(`/playlist-detail?id=${item.id}`)
+                }}
+              />
             ))}
           </RecommendPlaylistWrapper>
         </RecommendPart>

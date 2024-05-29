@@ -1,4 +1,5 @@
-import React, { memo } from "react"
+import { memo } from "react"
+import { Skeleton } from "antd"
 import type { FC, ReactNode } from "react"
 
 import { PlaylistItemWrapper } from "./style"
@@ -6,16 +7,17 @@ import { PlaylistItemWrapper } from "./style"
 interface IProps {
   children?: ReactNode
   item: any
+  clickFn: any
 }
 
-const PlaylistItem: FC<IProps> = ({ item }) => {
+const PlaylistItem: FC<IProps> = ({ item, clickFn }) => {
   const parsePlayCount = (count: number) => {
     return count / 10000 >= 1 ? `${Math.ceil(count / 10000)}万` : count
   }
 
   return (
     <PlaylistItemWrapper $bg={item.picUrl}>
-      <div className="playlist-item">
+      <div className="playlist-item" onClick={clickFn}>
         <div className="playlist-pic">
           <div className="mask sprite_cover">
             <div className="playlist-bottom sprite_cover">
@@ -28,7 +30,6 @@ const PlaylistItem: FC<IProps> = ({ item }) => {
           </div>
         </div>
         <div className="playlist-title">{item.name}</div>
-        <div></div>
       </div>
     </PlaylistItemWrapper>
   )

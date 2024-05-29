@@ -13,3 +13,10 @@ export function getPlaylists() {
     url: "/top/playlist"
   })
 }
+
+// 歌单详情
+export function getPlaylistDetail() {
+  return hyRequest.get({
+    url: "/playlist/detail"
+  })
+}
